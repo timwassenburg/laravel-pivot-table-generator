@@ -1,6 +1,6 @@
 {
     "name": "timwassenburg/laravel-pivot-table-generator",
-    "description": "Generate Laravel actions",
+    "description": "Quickly generate pivot tables for your projects",
     "keywords": ["generator", "php", "cli", "laravel", "artisan", "pivot", "migrations"],
     "homepage": "https://github.com/timwassenburg/laravel-pivot-table-generator",
     "license": "MIT",
