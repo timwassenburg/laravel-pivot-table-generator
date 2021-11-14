@@ -1,0 +1,24 @@
+{
+    "name": "timwassenburg/laravel-pivot-table-generator",
+    "description": "Generate Laravel actions",
+    "keywords": ["generator", "php", "cli", "laravel", "artisan", "pivot", "migrations"],
+    "homepage": "https://github.com/timwassenburg/laravel-pivot-table-generator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tim Wassenburg"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "TimWassenburg\\PivotTableGenerator\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TimWassenburg\\PivotTableGenerator\\PivotTableGeneratorServiceProvider"
+            ]
+        }
+    }
+}
