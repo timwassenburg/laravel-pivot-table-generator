@@ -14,11 +14,34 @@
             "TimWassenburg\\PivotTableGenerator\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "TimWassenburg\\PivotTableGenerator\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
     "extra": {
         "laravel": {
             "providers": [
                 "TimWassenburg\\PivotTableGenerator\\PivotTableGeneratorServiceProvider"
             ]
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.5",
+        "orchestra/testbench": "^8.5",
+        "laravel/pint": "^1.10",
+        "nunomaduro/larastan": "^2.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
         }
     }
 }

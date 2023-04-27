@@ -34,7 +34,6 @@ class MakePivotCommand extends GeneratorCommand
      * Build the class with the given name.
      *
      * @param  string  $name
-     * @return string
      *
      * @throws FileNotFoundException
      */
@@ -47,20 +46,17 @@ class MakePivotCommand extends GeneratorCommand
 
     /**
      * Replace the namespace for the given stub.
-     *
-     * @param string $stub
-     * @return string
      */
     protected function populateStub(string $stub): string
     {
-        list($firstTable, $secondTable) = $this->getSortedInput();
+        [$firstTable, $secondTable] = $this->getSortedInput();
 
         $searches = [
             [
                 '{{ first_table_name }}',
                 '{{ second_table_name }}',
                 '{{ class }}',
-                '{{ pivot_table }}'
+                '{{ pivot_table }}',
             ],
         ];
 
@@ -71,7 +67,7 @@ class MakePivotCommand extends GeneratorCommand
                     $firstTable,
                     $secondTable,
                     $this->getClassName(),
-                    $this->getNameInput()
+                    $this->getNameInput(),
                 ],
                 $stub
             );
@@ -80,9 +76,6 @@ class MakePivotCommand extends GeneratorCommand
         return $stub;
     }
 
-    /**
-     * @return string
-     */
     public function getClassName(): string
     {
         $name = Str::studly($this->getNameInput());
@@ -90,14 +83,11 @@ class MakePivotCommand extends GeneratorCommand
         return "Create{$name}Table";
     }
 
-    /**
-     * @return array
-     */
     protected function getSortedInput(): array
     {
         $inputValues = [
             $this->getSingularInput('first_table_name'),
-            $this->getSingularInput('second_table_name')
+            $this->getSingularInput('second_table_name'),
         ];
         sort($inputValues);
 
@@ -106,8 +96,6 @@ class MakePivotCommand extends GeneratorCommand
 
     /**
      * Get the desired class name from the input.
-     *
-     * @return string
      */
     protected function getNameInput(): string
     {
@@ -116,10 +104,6 @@ class MakePivotCommand extends GeneratorCommand
         return implode('_', $sortedInput);
     }
 
-    /**
-     * @param string $name
-     * @return string
-     */
     protected function getSingularInput(string $name): string
     {
         return Str::lower(Str::singular(trim($this->argument($name))));
@@ -127,29 +111,24 @@ class MakePivotCommand extends GeneratorCommand
 
     /**
      * Get the stub file for the generator.
-     *
-     * @return string
      */
     protected function getStub(): string
     {
-        return __DIR__ . '/../../stubs/pivot_migration.stub';
+        return __DIR__.'/../../stubs/pivot_migration.stub';
     }
 
     /**
      * Get the default namespace for the class.
      *
      * @param  string  $rootNamespace
-     * @return string
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $rootNamespace . '/../database/migrations';
+        return $rootNamespace.'/../database/migrations';
     }
 
     /**
      * Get the console command arguments.
-     *
-     * @return array
      */
     protected function getArguments(): array
     {
@@ -163,12 +142,11 @@ class MakePivotCommand extends GeneratorCommand
      * Get the destination class path.
      *
      * @param  string  $name
-     * @return string
      */
     protected function getPath($name): string
     {
-        $filename = now()->format('Y_m_d_his') . "_create_" . $this->getNameInput() . "_table.php";
+        $filename = now()->format('Y_m_d_his').'_create_'.$this->getNameInput().'_table.php';
 
-        return database_path('migrations/' . $filename);
+        return database_path('migrations/'.$filename);
     }
 }
