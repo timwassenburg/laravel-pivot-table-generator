@@ -20,7 +20,7 @@
 ## Installation
 Install the package with composer.
 ```bash
-composer require timwassenburg/laravel-pivot-table-generator
+composer require timwassenburg/laravel-pivot-table-generator --dev
 ```
 
 ## Usage
